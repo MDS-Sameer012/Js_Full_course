@@ -43,5 +43,3 @@ let counter = 22;
 // console.log("Pre Increment : ",++counter); //23 --> it will first increment value and then use
 // console.log("Post Increment : ",counter++); //23 --> it will first use value and then increment
 // console.log("Post Increment : ",counter); //24 --> result of post increment
-
-
