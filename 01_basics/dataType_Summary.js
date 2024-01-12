@@ -28,5 +28,26 @@ let bigNumber = 999999999999999999999999999999999999999n;
 
 let id1 = Symbol("123");
 let id2 = Symbol("123");
-console.log(id1 == id2); // false it uniquely identify two variable
-console.log("type of symbol : ",typeof id1);
+// console.log(id1 == id2); // false it uniquely identify two variable
+// console.log("type of symbol : ",typeof id1);
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// MEMORY IN JS
+
+// STACK (Stored primitve datatype it passess copy of variable as an argument)
+let userName = "Sameer";
+let newUserName = userName;
+newUserName = "Sohail";
+// console.log("user Name : ",userName);
+// console.log("New Name : ",newUser);
+
+let user = {
+    name: "Sameer",
+    email:"sameer@gmail.com"
+}
+let newUser = user;
+console.table({Old_User:user,New_User:newUser});
+
+console.log("After Change");
+newUser.email="mds@gmail.com";
+console.table({Old_User:user,New_User:newUser});
