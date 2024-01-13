@@ -12,7 +12,7 @@ let age = 20;
 
 // String Methods in js
 
-// (1) Another way of creating string
+// (1) Another way of creating string Object
 let myCity = new String("India-Delhi-Shahdara-Vishwas_Nagar");
 
 // (2) Split
@@ -30,7 +30,7 @@ let myPhone = "        Samsung Galaxy   C7 Pro             ";
 // it will not remove white space from in between the two letters because these are the part of string 
 
 // (4) Accessing Elements from String
-let myPen = "V5 Pilot Pen";
+let myPen = new String("V5 Pilot Pen");
 // there are two ways to access element from string 
         // (a) using String.charAt(index);
 // console.log(myPen.charAt(1));
