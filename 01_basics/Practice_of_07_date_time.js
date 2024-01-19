@@ -11,7 +11,7 @@ function func1(date) {
 }
 
 let date = new Date();
-// console.log(func1(date));
+// console.loSg(func1(date));
 
 // Question 2:
 // Create a function that calculates the difference in days between two given dates.
