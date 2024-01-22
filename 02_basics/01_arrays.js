@@ -51,4 +51,10 @@ console.log("A : ",array);
 
 // < 9 > array.splice(start, end); // --->  slice and splice are little similar but splice will actually remove element from array while slice only display it not actually change actual array.
 console.log(array.splice(3, 4));
-console.log("B : ",array);
+console.log("B : ", array);
+
+// <10> array.reverse() // --->  it will reverse the actual give array;
+
+console.log(`Original array : ${array}`); // --> Output : Sameer,0,1,6
+// console.log(`Reversed array : ${array.reverse()}`); // --> Output : 6,1,0,Sameer
+// console.log(`Original array : ${array}`); // --> Output : Sameer,0,1,6
