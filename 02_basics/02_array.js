@@ -14,5 +14,29 @@ let all_heroes = [...marvel_heroes, ...dc_heroes, ...indian_heroes];
 // console.log(all_heroes); // --->  it will merger all arrays
 
 // < 4 > Array.flat(iteration); // --->  it will make array withhout subarray in iteratin we specify number at which we want to remove subarrays if we want to remove all subarrays then we specify iterations as "infinity"
-let another_array = [1, 2, 3, 4, [5, 6, 7], [8, 9, 10, [11, 12, 13]]];
-console.log(another_array);
+// NOTE : it doesn't change actual array 
+let another_array = [1, 2, 3, 4, [5, 6, 7], [8, 9, 10, [11, 12, 13,[14,15,16,]]]];
+// console.log(another_array);  // --> Output : [ 1, 2, 3, 4, [ 5, 6, 7 ], [ 8, 9, 10, [ 11, 12, 13, [Array] ] ] ]
+
+// console.log(another_array.flat(1));  // --> Output : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, [ 11, 12, 13, [ 14, 15, 16 ] ] ]
+// console.log(another_array);
+
+// console.log(another_array.flat(2)); // --> Output : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, [ 14, 15, 16 ] ]
+// console.log(another_array.flat(Infinity)); // --> Output : [ 1,  2,  3,  4,  5,  6, 7,  8,  9, 10, 11, 12, 13, 14, 15, 16 ]
+
+// < 5 > Array.isArray(element); // --->  it will return boolean value based on whether given variable is array or not
+let name = "Sameer";
+let age = 20;
+// console.log(Array.isArray(name));  // --> Output : false
+// console.log(Array.isArray(age));  // --> Output : false
+// console.log(Array.isArray(another_array));  // --> Output : true
+// console.log(`Passed Argument value : [${marvel_heroes}] , is Array ? ${Array.isArray(marvel_heroes)?"Yes":"No"}`);
+
+// < 6 > Array.from(argument); // --->  it will convert the given argument to array
+// console.log(name); // --> Output : Sameer
+// console.log(Array.from(name)); // --> Output : [ 'S', 'a', 'm', 'e', 'e', 'r' ]
+// console.log(Array.from(name,(x)=>x+1)); // --> Output : [ 'S1', 'a1', 'm1', 'e1', 'e1', 'r1' ]
+// console.log(Array.from([age])); // --> Output : [ 20 ]
+// console.log(Array.from([age,1,2,3,4])); // --> Output : [ 20, 1, 2, 3, 4 ]
+// console.log(Array.from([age,1,2,3,4],(y)=>y+y)); // --> Output : it will add each element with it self 
+// console.log(Array.from([age,1,2,3,4],(x)=x+x)); // --> 
