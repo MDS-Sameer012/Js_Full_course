@@ -39,4 +39,40 @@ let age = 20;
 // console.log(Array.from([age])); // --> Output : [ 20 ]
 // console.log(Array.from([age,1,2,3,4])); // --> Output : [ 20, 1, 2, 3, 4 ]
 // console.log(Array.from([age,1,2,3,4],(y)=>y+y)); // --> Output : it will add each element with it self 
-// console.log(Array.from([age,1,2,3,4],(x)=x+x)); // --> 
+
+let student = {
+    name: "Sameer",
+    roll: 12,
+    age: 20
+}
+    // console.log(student);
+    // console.log(Array.from(student)); // --> Output : []
+    // console.log(Array.from(Object.entries(student))); // --> Output : [ [ 'name', 'Sameer' ], [ 'roll', 12 ], [ 'age', 20 ] ]
+    // console.log(Array.from(Object.keys(student))); // --> Output : [ 'name', 'roll', 'age' ]
+    // console.log(Array.from(Object.values(student))); // --> Output : [ 'Sameer', 12, 20 ]
+
+// < 7 > Array.of(arg, arg, arg...);
+let score1 = 100;
+let score2 = 200;
+let score3 = 300;
+console.log([score1,score2,score3]);  // --> Output : [ 100, 200, 300 ]
+console.log(Array.of(score1,score2,score3));  // --> Output : [ 100, 200, 300 ]
+console.log(typeof [score1,score2,score3]);  // --> Output : object
+console.log(typeof Array.of(score1, score2, score3));  // --> Output : object
+
+let myArray = new Array(5);
+console.log(myArray);      // --> Output : [ <5 empty items> ]
+console.log(myArray[3]);      // --> Output : undefined
+myArray.push(1);
+myArray.push(2);
+myArray.push(3);
+myArray.push(4);
+myArray.push(5);
+console.log(myArray);  // --> Output : [ <5 empty items>, 1, 2, 3, 4, 5 ]
+myArray[0] = "one";
+myArray[1] = "two";
+myArray[2] = "three";
+myArray[3] = "four";
+myArray[4] = "five";
+console.log(myArray); // --> Output : [    'one',   'two',    'three', 'four' , 'five',  1,    2, 3,    4,       5 ]
+
