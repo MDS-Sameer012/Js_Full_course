@@ -123,7 +123,9 @@ const greet3 = () => {
 //********************************************************
 // <4> this keyword globally   // ---> let check how this keyword behave in global scope
 // console.log(this);  // --> Output : {} 
- //+++++ Important +++++   but this will return some window values when we return it globally in browser reffering to current window which enable us to handle events like scroll , click etc.
+//+++++ Important +++++   but this will return some window values when we return it globally in browser reffering to current window which enable us to handle events like scroll , click etc.
+ 
+ // --->  Most Global object in Browser is Window //+++++ Important +++++
 
 // const emp = "Surender";
 // console.log(emp);  // --> Output : Surender
@@ -157,4 +159,14 @@ const getEmployee = () => ({ name: "Sameer", empId: 23839 });
 
 // but if we use 3rd method then =>
 const getStudent = () => { name: "Sameer", rollno = 3892 };
-console.log(getStudent()); // --> Output : undefined
+// console.log(getStudent()); // --> Output : undefined
+
+//********************************************************
+// as we see above that we get various values when function return this so let use one of them
+function triggered() {
+    this.setInterval(() => { 
+        console.log("I am Triggered");
+    }, 5000);
+    
+}
+// triggered(); // --->  it will print "I am Triggered" every 5sec infinetly
