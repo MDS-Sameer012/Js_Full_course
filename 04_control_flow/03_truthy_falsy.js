@@ -87,3 +87,73 @@ if (num) {
 
 // console.log(Boolean ('true'));  // --> Output : true
 // console.log(false == 'true');  // --> Output : false
+
+// ******************************************************** //********************************************************
+
+//********************************************************
+// Nullish Coalescing Operator (??): null undefined
+// if our variable get null,undefined value assigned for e.g. when value return from some function or process then it is not desirable that any variable hold null or undefined value so using "Nullish Coalescing Operator" we give variable an alternative value which will be assigned if our variable get assigned with null , undefined values
+
+function returnNull() {
+    return null;
+}
+function returnUndefined() {
+    return undefined;
+}
+// in actual these are some other functions
+
+let check = returnNull() ?? 10;  // --->  10 
+let check2 = returnNull() ?? returnUndefined() ?? 30;  // --->  30
+let check3 = returnNull() ?? returnUndefined() ?? 49 ?? 30;  // --->  49
+let check4 =  49 ?? 30;  // --->  49
+let check5 = 0 ?? 30;  // --->  0
+
+// the first value it get in order : val1 ?? val2-- > it will assing the first value to variable
+
+// console.log(check);
+// console.log(check2);
+// console.log(check3);
+// console.log(check4);
+// console.log(check5);
+
+//********************************************************
+// <@> Terniary Operator   // ---> shorthand syntax for if else
+
+let age = 13;
+age = 18;
+
+// age>=18 ? console.log("You are greater than 18") : console.log("You are less than 18");
+let studentStatus;
+let marks = 40;
+marks >= 90 ? studentStatus = "Good Student" : studentStatus = "Average Student";
+// console.log(`Obtained Marks : ${marks}, He/She is ${studentStatus}`);
+
+//********************************************************
+// <@> checking for emty array and Object    // ---> 
+
+// ARRAY
+// let arr = [];
+
+// if (arr.length <= 0) {
+//     console.log(`Array is Empty`);
+// }
+// else {   
+//     console.log(`Array is not Empty , Array length : ${arr.length}`);
+// }
+
+// OBJECt
+// let obj = {name : "Sameer",age : 20 , marks : [90,80,90,98]};
+
+// if (Object.keys(obj).length <= 0) {
+//     console.log(`Object is Empty`);
+// } else {   
+//     console.log(`Object is Not Empty`);
+//     console.log(`Object Length : ${Object.keys(obj).length}`);
+// }
+
+
+
+
+
+
+
