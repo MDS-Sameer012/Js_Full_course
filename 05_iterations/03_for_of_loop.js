@@ -83,7 +83,7 @@ iplTeamShortName.set("topper", function () {
 });
 
 // console.log(iplTeamShortName.size); // --> Output : 9
-// console.log(iplTeamShortName); // --> Output : Map(9) {
+console.log(iplTeamShortName); // --> Output : Map(9) {
 //     'DC' => 'Delhi Capitals',
 //     'RCB' => 'Royal Challenger Banglore',
 //     'CSK' => 'Chennai Super Kings',
@@ -92,11 +92,25 @@ iplTeamShortName.set("topper", function () {
 //     'KKR' => 'Kolkata Knights Rider',
 //     'KXIP' => 'Kings XI Punjab',
 //     'SRH' => 'Sunrisers Hyderabad'
+//     'topper' => [Function (anonymous)]
 // }
 
 iplTeamShortName.get("topper")();
 // --> Output : Chennai Super Kings
 
 for (const [key, value] of iplTeamShortName) {
-  console.log(`${key} : ${value}`);
-}
+  // console.log(`${key} : ${value}`);
+} 
+// --> Output : 
+// Chennai Super Kings
+// DC : Delhi Capitals
+// RCB : Royal Challenger Banglore
+// CSK : Chennai Super Kings
+// MI : Mumbai Indians
+// GT : Gujrat Titans
+// KKR : Kolkata Knights Rider
+// KXIP : Kings XI Punjab
+// SRH : Sunrisers Hyderabad
+// topper : function () {
+//   console.log(iplTeamShortName.get("CSK"));
+// }
