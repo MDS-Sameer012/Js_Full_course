@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #212121;
+        color: #fff
+    }
+
+    .focus:nth-child(2) {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <h1 id="title" class="heading"><span class="focus">DOM</span> Learning <span class="focus"> Started</span></h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis .</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+        <hr>
+
+        <ul>
+            <h1 class="heading">This is Unordered List</h1>
+            <li class="list-item" id="point-1">One</li>
+            <li class="list-item" id="point-2">Two</li>
+            <li class="list-item" id="point-3">Three</li>
+            <li class="list-item" id="point-4">Four</li>
+        </ul>
+
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value="male">
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="female">
+    </div>
+
+    <script>
+
+        //********************************************************
+        // <1>  getElementById // ---> getting element by targetting it's it 
+
+        const title = document.getElementById('title');
+
+        //********************************************************
+        // <2> accessing element content using dom manipulation   // ---> 
+
+        title.innerHTML
+        // '<span class="focus">DOM</span> Learning <span class="focus"> Started</span>'
+        title.textContent
+        // 'DOM Learning  Started'
+        title.innerText
+        // 'DOM Learning'
+
+        console.log(title);
+
+
+        //********************************************************
+        // <3> querySelector()   // ---> it is also used to select items based on parameter but it allow us to select items just as we select in css selector which is more familiar
+
+        const started = document.querySelector('.focus:nth-child(2)');
+        started.style.display = "inline";
+        started.style.backgroundColor = "pink";
+
+        //********************************************************
+        // <4> querySelectorAll()   // ---> it is similar to above but it return all values as nodelist rather than only one element as querySelector() just return first element
+
+        // NOTE : it return nodelist not array (it has foreach function)
+        const listPoints = document.querySelectorAll('li');
+        // undefined
+        listPoints.forEach(
+            (li) => {
+                li.style.backgroundColor = "yellow";
+                li.style.fontSize = "24px";
+            }
+        );
+        // undefined
+        listPoints.forEach(
+            (li) => {
+                li.style.border = "#212121 4px solid";
+                li.style.borderRadius = "9px";
+                li.style.color = "#212121";
+            }
+        );
+
+        //********************************************************
+        // <5> getElementByClassName   // ---> it is used to target value by classname
+
+        // NOTE : it return HTMLCollection not array (it doesn't has foreach function if we want to use that and other function then we need to convert this to array by using  : Array.from(obj))
+
+        const listItem = document.getElementsByClassName('list-item');
+        // undefined
+        listItem
+        // HTMLCollection(4)[li#point - 1.list - item, li#point - 2.list - item, li#point - 3.list - item, li#point - 4.list - item, point - 1: li#point - 1.list - item, point - 2: li#point - 2.list - item, point - 3: li#point - 3.list - item, point - 4: li#point - 4.list - item]
+
+        listItem[0].style.fontStyle = "italic"; // --->  we need to access HTMLCollection item by giving index even if it has only one element
+
+        const listItemArray = Array.from(listItem);
+        // now we can use array functions 
+        listItemArray.forEach(
+            (li, index) => {
+                if (index % 2 == 0) {
+                    li.style.padding = "15px";
+                    li.style.borderColor = "red";
+                }
+                else {
+                    li.style.padding = "5px";
+                    li.style.borderColor = "green";
+
+                }
+                li.style.margin = "8px";
+
+
+            }
+        )
+
+
+        //********************************************************
+        // <6> getElementByName   // ---> it is used to get element by name 
+
+        const gender = document.getElementsByName('gender');
+        // undefined
+        gender
+        // NodeList(2)[input#male, input#female]
+
+        gender.forEach(
+            (gender) => {
+                if (gender.checked)
+                    document.getElementById("point-3").innerText = gender.value;
+            }
+        )
+
+
+    </script>
+</body>
+
+</html>
