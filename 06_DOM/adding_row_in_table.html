@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+        }
+
+        #languages-list,
+        #languages-list tr,
+        #languages-list td,
+        #languages-list th {
+            border-collapse: collapse;
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="languages-list">
+        <thead>
+            <tr>
+                <th colspan="2">Famous Programming Languages</th>
+            </tr>
+            <tr>
+                <th>S.no</th>
+                <th>Programming Language</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        const tbody = document.querySelector('#languages-list tbody');
+        console.log(tbody);
+
+        let programmingLanguages = ["C++","C","Java","Python","Javascript","Ruby","PHP"];
+
+        
+        programmingLanguages.forEach((language,index)=>{
+            const tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            td1.innerText = index+1;
+            td2.innerText = language;
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tbody.appendChild(tr);
+        });
+        const tr = document.querySelectorAll('tr');
+        tr.forEach(element => {
+            element.firstElementChild.style.textAlign = "center";
+            element.lastElementChild.style.padding = "7px 8px";
+        });
+    </script>
+</body>
+
+</html>
