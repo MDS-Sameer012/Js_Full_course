@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent and Child Relation in just</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div class="day">Monday</div> <!--monday-->
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+        <div class="day">Friday</div>
+        <div class="day">Saturday</div>
+        <div class="day">Sunday</div>
+    </div>
+
+    <script>
+        //********************************************************
+        // <1> parent in js   // ---> 
+        
+        const parent = document.querySelector('#parent');
+        console.log(parent);
+
+        console.log(parent.children); // --->  it return htmlCollection of all the elements as child
+
+        console.log(parent.children.length); // --> Output : 7
+
+        console.log(parent.childNodes); // --> Output : it will return node list with number of childNodes a parent have it also treate newline as childnode but only once
+
+        for (let i = 0; i < parent.children.length; i++) {
+            if(i%2 ==0)
+                parent.children[i].style.color = "yellow";
+            else
+                parent.children[i].style.color = "lightGreen";
+            console.log(parent.children[i].innerText);
+        }
+
+        console.log(parent.firstChild);  // --> Output : text (newline) it will return first child node
+        console.log(parent.lastChild); // --> Output : text (newline) it will return last child node
+
+        console.log(parent.firstElementChild);  // --> Output : it will return first elementchild of parent
+     
+        console.log(parent.lastElementChild);  // --> Output : it will return last elementchild of parent
+        
+        //********************************************************
+        // <2> child element in js   // ---> 
+        
+            let child = document.querySelector('.day');
+            // console.log(child);
+
+            // console.log(child.innerText);
+
+            // console.log(child.parentElement); // --> Output : it will return it's parent element
+            // console.log(child.parentNode); // --> Output : similar to above
+
+            // console.log(child.nextElementSibling); // --> Output : it will return next element node
+            // console.log(child.nextSibling); // --> Output : it will return next node not just element but also text node like comment ,"space" all these are type of text node and they are returned as text node
+            
+            // console.log(child.previousElementSibling); // --> Output : null in this case
+
+            // console.log(child.firstChild);  // --> Output : it will return first child of child
+            // console.log(child.lastChild);  // --> Output : it will return last child of child 
+
+
+
+    </script>
+</body>
+
+</html>
