@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating New Element in just</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <script>
+        const body = document.querySelector('body');
+        console.log(body.children);
+        console.log(body.childNodes);
+
+        const div = document.createElement('div');
+        console.log(div);
+        div.style.padding = "17px";
+        div.style.color = "black";
+        div.style.backgroundColor = "yellow";
+        div.style.border = "3px solid red";
+        div.style.borderRadius = "9px";
+
+        //*************************[First way to insert content]*******************************
+        div.innerText = "I Love India"; // --->  it will overwrite content
+
+        //*************************[Second way to insert content]*******************************
+        const text = document.createTextNode("<p>I Love My Country</p>"); // --->  it will create text node not html element so <p></p> are treaded as plain text 
+        div.appendChild(text); // --->  it will append in content not overwrite content 
+
+        // to insert html element we use below code
+        const para = document.createElement('p');
+        para.innerText = "I Love Delhi";
+        para.style.fontStyle = "italic";
+        div.appendChild(para);
+        document.body.appendChild(div);
+
+
+
+    </script>
 </body>
+
 </html>
