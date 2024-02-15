@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editing Element in Js</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+        }
+
+        li {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Famous Programming Languages</h1>
+    <ul id="programming-languages">
+    </ul>
+    <script>
+        const programmingLanguages = ["C++", "C", "Java", "JavaScript", "Python"];
+
+        function populateProgrammingLanguages(programmingLanguages) {
+            const ul = document.querySelector('#programming-languages')
+            programmingLanguages.forEach((language, index) => {
+                const li = document.createElement('li');
+                li.setAttribute('id', `point-${index + 1}`);
+                li.appendChild(document.createTextNode(language));
+                ul.appendChild(li);
+            });
+
+
+        }
+        populateProgrammingLanguages(programmingLanguages);
+
+        //***********************[First way to update element]*********************************
+        // #edit
+        // editing javascript to typescript 
+        const js = document.querySelector('li:nth-child(4)');
+        const typeScript = document.createElement('li');
+        typeScript.appendChild(document.createTextNode('TypeScript'));
+        js.replaceWith(typeScript);
+
+        // updating python to javascript
+        document.querySelector('li:last-child').innerHTML = "JavaScript";
+        // OR
+        document.querySelector('li:last-child').outerHTML = "<li>Ruby</li>";
+        // OR
+        document.querySelector('li:last-child').innerText = "C#";
+        // OR
+        document.querySelector('li:last-child').textContent = "Flutter";
+    </script>
+</body>
+
+</html>
