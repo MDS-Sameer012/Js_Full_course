@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Creating new element</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+        }
+
+        #shopping-cart-items,
+        #shopping-cart-items td,
+        #shopping-cart-items th {
+            border: 3px solid #fff;
+            border-collapse: collapse;
+            padding: 8px 14px
+        }
+    </style>
+</head>
+
+<body>
+    <table id="shopping-cart-items">
+        <thead>
+            <tr>
+                <th colspan="5">Products in Sopping Cart</th>
+            </tr>
+            <tr>
+                <th>S.no</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>GST</th>
+                <th>Payable Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">Total Payable Amount</th>
+                <th id="total-Payable-Amount"></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+
+        const shoppingCartItems = [
+            {
+                productName: "Samsung Galaxy C7 Pro",
+                productCategory: "Mobile",
+                price: 25000,
+                gst: 18
+            },
+            {
+                productName: "Real Me 5 Pro",
+                productCategory: "Mobile",
+                price: 18000,
+                gst: 18
+            },
+            {
+                productName: "HP Pavillion exqut-2109",
+                productCategory: "Laptop",
+                price: 52000,
+                gst: 18
+            },
+            {
+                productName: "Mens T-shirt",
+                productCategory: "Mens Fashion",
+                price: 499,
+                gst: 12
+            },
+            {
+                productName: "Ponds Facewash",
+                productCategory: "Beauty & Cosmetics",
+                price: 129,
+                gst: 5
+            }
+        ];
+
+
+        let totalAmount = 0;
+        function populateProducts(shoppingCartItems) {
+            shoppingCartItems.forEach((product, index) => {
+                const tbody = document.querySelector('#shopping-cart-items tbody');
+                const tr = document.createElement('tr');
+                const sno = document.createElement('td');
+                const productName = document.createElement('td');
+                const productPrice = document.createElement('td');
+                const gst = document.createElement('td');
+                const payableAmount = document.createElement('td');
+
+
+                const name = product.productName;
+                const price = product.price;
+                const gstOnProduct = product.gst;
+                const amount = price + (gstOnProduct / 100 * price);
+                totalAmount += amount;
+
+                sno.innerText = index + 1;
+                productName.innerText = name;
+                productPrice.innerText = price.toLocaleString('en-IN',{maximumFractionDigits:0});
+                gst.innerText = `${gstOnProduct} %`;
+                payableAmount.innerText = amount.toLocaleString('en-IN',{maximumFractionDigits:0});
+
+                tr.appendChild(sno);
+                tr.appendChild(productName);
+                tr.appendChild(productPrice);
+                tr.appendChild(gst);
+                tr.appendChild(payableAmount);
+                tbody.appendChild(tr);
+
+            });
+
+            const totalPayableAmount = document.querySelector('#total-Payable-Amount');
+            totalAmount = totalAmount.toLocaleString('en-IN',{maximumFractionDigits:0});
+            totalPayableAmount.innerText = totalAmount;
+
+        }
+        populateProducts(shoppingCartItems);
+    </script>
+</body>
+
+</html>
