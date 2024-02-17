@@ -1,0 +1,37 @@
+* {
+    font-size: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    border: 4px double purple;
+    border-radius: 16px;
+    height: 29vh;
+    width: fit-content;
+    padding: 7px 29px;
+}
+
+form input{
+    border-radius: 4px;
+}
+
+form input[type="submit"]{
+    background-color: plum;
+    font-weight: bold;
+    padding: 4px 11px;
+}
+form input[type="submit"]:hover{
+    transform: scale(.99);
+}
+#under-weight{
+    color: red;
+}
+#normal-weight{
+    color: green;
+}
+#over-weight{
+    color: orange;
+}
