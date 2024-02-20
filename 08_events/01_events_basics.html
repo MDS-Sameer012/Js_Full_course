@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events in js</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: white;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image {
+            width: 200px;
+            height: 200px;
+            border: 2px solid navy;
+            margin: 4px;
+        }
+        #images li{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Beautiful Images</h1>
+        <ol id="images">
+            <li><img id="panda" class="image"
+                    src="https://images.pexels.com/photos/3608263/pexels-photo-3608263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Panda"></li>
+            <li><img id="cherry-blossom" class="image"
+                    src="https://images.pexels.com/photos/992734/pexels-photo-992734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Cherry Blossom"></li>
+            <li><img id="dirt-bike" class="image"
+                    src="https://images.pexels.com/photos/217872/pexels-photo-217872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Dirt Bike"></li>
+            <li><img id="eagle" class="image"
+                    src="https://images.pexels.com/photos/3250638/pexels-photo-3250638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Eagle"></li>
+            <li><img id="pyramid" class="image"
+                    src="https://images.pexels.com/photos/3522880/pexels-photo-3522880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Pyramid of Giza"></li>
+            <li id="last Li">Li Ends Here</li>
+        </ol>
+    </div>
+</body>
+<script>
+
+    const ol = document.getElementById('images');
+    ol.addEventListener('click', (event) => {
+        console.log(`Event in Ol occured ( source : ${event.target.id})`);
+    }, false);
+
+    const images = document.querySelectorAll('li');
+    // console.log(images);
+    images.forEach((image) => {
+        image.addEventListener('click', (event) => {
+            // event.target.parentNode.remove();
+
+            // another way to remove
+            // event.target.parentNode.removeChild(event.target);
+            // event.target.remove(); // --->  upper one is equivalet to this
+            console.log(`tag of source : ${event.target.tagName}`);
+            if(event.target.tagName === 'LI'){
+            event.target.parentNode.removeChild(event.target);
+            }
+            else{
+            event.target.parentNode.remove();
+            }
+            console.log(`${event.target.id} is removed`);
+        }, false);
+    });
+
+    // +++++ Important +++++
+    // The third argument in addEventListener has two possible values: either "true" or "false." It is by default "false" if not explicitly defined.
+    // If set to "false," the element will exhibit bubbling behavior/propagation.
+    // If set to "true," the element will exhibit capturing behavior/propagation.
+
+    // # Bubbling: Propagation occurs from the innermost element to the outer element or from bottom to top. This means that the inner event listener is executed first, followed by the outer one (its parent).
+
+    // # Capturing: Propagation occurs from the outermost element to the inner element or from top to bottom. This means that the event listeners on parent elements are executed first, followed by the child elements.
+    // NOTE: Propagation can be stopped if desired by calling event.stopPropagation() inside the addEventListener function.
+
+</script>
+
+</html>

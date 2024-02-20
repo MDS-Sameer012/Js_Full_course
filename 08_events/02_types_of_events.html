@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Events in js</title>
+</head>
+
+<body>
+    <button>Change Color</button>
+</body>
+<script>
+    function random(number) {
+        return (Math.random() * (number + 1));
+    }
+    function changeRandomColor() {
+        randomColorValue = `rgb(${random(255)},${random(255)},${random(255)})`;
+        document.querySelector('body').style.backgroundColor = randomColorValue;
+    }
+    const button = document.querySelector('button');
+
+    //***************************[Types of Events]*****************************
+    //********************************************************
+
+    //********************************************************
+    // <0> controller to remove all events attach to particular Element   // ---> 
+
+    const controller = new AbortController();
+
+    // NOTE : We can add multiple events on same element simuntaneously
+
+    // <1> click   // ---> this will fire when element is clicked by user
+
+    // button.addEventListener('click',changeRandomColor); // --->  it will change body color to random when click
+
+    //********************************************************
+    // <2> focus   // ---> it will fire when user focus or click on event but it will not fire if user again click it without going out of event if user want to again fire event then he need to goes out and then again comes in in element and click unlike in click event user can click continously without going out of element and event will fire continously
+
+    // button.addEventListener('focus',changeRandomColor);
+
+    //********************************************************
+    // <3> blur   // ---> This event is initially triggered when a user clicks on the element. Subsequently, it triggers when the user clicks outside the element, signaling the loss of focus. Unlike the click event, continuous clicking within the element or moving in and out won't trigger the event repeatedly. To trigger the event again, the user needs to first click outside the element to blur it, and then they can click the element again to initiate the event.
+
+
+    // button.addEventListener('blur',changeRandomColor);
+
+    //********************************************************
+    // <4> double click (dblclick)   // ---> it will triggered when user will double click on element
+
+    // button.addEventListener('dblclick',changeRandomColor);
+
+    //********************************************************
+    // <5> mouse hover   // ---> it will trigger event when mouse hover on element
+
+    // button.addEventListener('mouseover',changeRandomColor);
+
+    //********************************************************
+    // <6> mouseout   // ---> it will trigger event when mouse pointer out of event
+
+    // button.addEventListener('mouseout',changeRandomColor);
+
+    //********************************************************
+    // <7> onload   // ---> this will trigger event when page is fully loaded
+
+    document.addEventListener('DOMContentLoaded', changeRandomColor);
+
+    // alternative method
+
+    // window.onload = changeRandomColor;
+
+    //********************************************************
+    // <8> keypress   // ---> it will trigger event when any key press
+
+    // button.addEventListener('keypress',changeRandomColor); // --->  it will trigger if any key will be pressed
+
+    // button.addEventListener('keypress', (event) => {
+    //     if (event.key === 'Enter' || event.keyCode === 13) {
+    //         changeRandomColor();
+    //     }
+    // });
+
+    
+
+    //********************************************************
+    // <9> keydown   // ---> it will triggered continously untill key is released after pressing
+
+    // button.addEventListener('keydown',changeRandomColor); // --->  it will work with any key
+
+    // button.addEventListener('keydown', (event) => {
+    //     console.log(`${event.key} : ${event.code}`);
+    //     if (event.key === 'y' || event.code === 'keyY') { // --->  not matter if we remove any condition from any side of OR operator but it just leave to show that either can work
+    //         changeRandomColor();
+    //     }
+    // });
+
+
+
+    //********************************************************
+    // <10>   keyup // ---> it will trigger event when we press key and at time of releasing key it will trigger
+
+    // button.addEventListener('keyup',changeRandomColor); // --->  it will work with any key
+
+    // button.addEventListener('keyup', (event) => {
+    //     if (event.key === 'u') {
+    //         changeRandomColor();
+    //     }
+    // })
+
+    button.removeEventListener('keypress',changeRandomColor);
+    //********************************************************
+    // <11> drag   // --->
+        
+        button.addEventListener('drag',changeRandomColor);
+    
+
+
+
+
+</script>
+
+</html>
