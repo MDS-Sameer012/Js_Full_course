@@ -57,13 +57,16 @@
 
     const ol = document.getElementById('images');
     ol.addEventListener('click', (event) => {
+        // event.stopPropagation(); //--> it will not propagate to child elements
         console.log(`Event in Ol occured ( source : ${event.target.id})`);
-    }, false);
+    }, true); // --->  its third argunment value is impact full and responsible for propagation behaviour
 
+    // NOTE : propagation (bubbling or capturing ) is done on the basis of value of parents third argunment in addEventListener
     const images = document.querySelectorAll('li');
     // console.log(images);
     images.forEach((image) => {
         image.addEventListener('click', (event) => {
+            // event.stopPropagation();
             // event.target.parentNode.remove();
 
             // another way to remove
@@ -89,6 +92,8 @@
 
     // # Capturing: Propagation occurs from the outermost element to the inner element or from top to bottom. This means that the event listeners on parent elements are executed first, followed by the child elements.
     // NOTE: Propagation can be stopped if desired by calling event.stopPropagation() inside the addEventListener function.
+
+    // #event.stopPropagation() method will stop parent addEventListener event when we are using bubbling but when we are capturing then it is not able to stop parent event
 
 </script>
 

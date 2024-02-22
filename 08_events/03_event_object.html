@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Object</title>
+    <style>
+        #change-bg{
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <button id="change-bg">Change Background</button>
+</body>
+<script>
+    // event object is parameter which is passed to function inside addEventListener
+    // it provide more functionality to handle a event
+
+    function randomNumber(number){
+        return (Math.random() * number + 1);
+    }
+
+    function changeRandomColor(event){
+        const randomColorValue = `rgb(${randomNumber(255)},${randomNumber(255)},${randomNumber(255)})`;
+        console.log(randomColorValue);
+        event.target.style.backgroundColor = randomColorValue; // --->  it will change the color of bg of button it self
+        // event.target.parentNode.style.backgroundColor = randomColorValue; // --->  it will change the color of bg of parent (body in this case)
+    }
+
+    function changeButtonSize(event){
+        if(event.target.style.width === '300px' || event.target.style.height=== '50px' )
+        {
+            event.target.style.width = '200px';
+            event.target.style.height = '30px';
+        }
+        else{
+            event.target.style.width = '300px';
+            event.target.style.height = '50px';
+}
+    }
+
+    const button = document.querySelector('#change-bg');
+
+    // adding multiple event to one element
+    button.addEventListener('click',changeRandomColor,false);
+    button.addEventListener('dblclick',changeButtonSize,false);
+    button.addEventListener('mouseover',(e)=>{
+        event.target.style.fontWeight = 'bold';
+    },false);
+    button.addEventListener('mouseout',(e)=>{
+        event.target.style.fontWeight = 'normal';
+    },false);
+</script>
+</html>
