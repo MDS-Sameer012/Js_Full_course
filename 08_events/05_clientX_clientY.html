@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client X & client Y in events</title>
+    <style>
+        body{
+            margin: 0;
+            overflow: hidden;
+            border: 2px solid black;
+        }
+        #circle{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="circle"></div>
+</body>
+<script>
+const circle = document.getElementById('circle');
+let count =1 ; 
+
+function random(){
+    return Math.random() * 255 +1;
+}
+
+function changeRandomColor(){
+    const randomColorValue = `rgb(${random()},${random()},${random()})`;
+    circle.style.backgroundColor = randomColorValue;
+}
+document.addEventListener('mousemove',(event)=>{
+    const clientX = event.clientX;
+    const clientY = event.clientY;
+
+    console.log(`${count}.Mouse Position  : (${clientX},${clientY})`);
+
+    circle.style.top = `${clientY}px`;
+    circle.style.left = `${clientX}px`;
+    changeRandomColor();
+    count++;
+})
+</script>
+</html>
