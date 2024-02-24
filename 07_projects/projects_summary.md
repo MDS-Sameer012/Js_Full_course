@@ -293,3 +293,81 @@ function startNewGame() {
   });
 }
 ```
+
+## Project 5 : Moving Canvas Circle with Mouse Pointer
+
+### Javascript Events
+
+```javascript
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+
+function drawCircle(x, y, size) {
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.beginPath();
+  ctx.fillStyle = "black";
+  ctx.arc(x, y, size, 0, 2 * Math.PI);
+  ctx.fill();
+}
+
+let x = 50;
+let y = 50;
+const size = 30;
+
+drawCircle(x, y, size);
+
+// Add your code here
+
+document.addEventListener("keydown", (e) => {
+  const speed = 5;
+  switch (e.key) {
+    case "a":
+      x -= speed;
+      break;
+    case "d":
+      x += speed;
+      break;
+    case "s":
+      y += speed;
+      break;
+    case "w":
+      y -= speed;
+      break;
+    default:
+      break;
+  }
+  console.log(`x : ${x} , y : ${y}`);
+  drawCircle(x, y, size);
+});
+```
+
+## Project 6 : Changing and Setting Random Background with Start and Stop Buttons
+
+### Async JavaScript
+
+```javascript
+let interval;
+function random() {
+  return Math.floor(Math.random() * 255 + 1);
+}
+
+function changeBackground() {
+  const randomColorVal = `rgb(${random()},${random()},${random()})`;
+  document.querySelector("body").style.backgroundColor = randomColorVal;
+  console.log(`Background Color : ${randomColorVal}`);
+}
+document.getElementById("start").addEventListener("click", (e) => {
+  interval = setInterval(changeBackground, 1000);
+});
+
+document.getElementById("stop").addEventListener("click", (e) => {
+  clearInterval(interval);
+  console.log(
+    `Current Background Color : ${
+      document.querySelector("body").style.backgroundColor
+    }`
+  );
+});
+```
