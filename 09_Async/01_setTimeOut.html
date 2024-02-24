@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Time Out & clear time out</title>
+</head>
+<body>
+    <h1>I am Learning Javascript</h1>
+    <div>Time : <span id="clock"></span></div>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    function changeHeading(name){
+        document.querySelector('h1').textContent = name;
+        // document.querySelector('h1').textContent = "& Preparing for NIMCET also"
+    }
+    // function updateClock(){
+    //     const time = new Date();
+    //     document.querySelector('#clock').textContent = `${time.getMinutes()}:${time.getSeconds()}:${time.getMilliseconds()}`;
+    //     requestAnimationFrame(updateClock);
+    // }
+    // updateClock();
+    function updateClock() {
+    const currentTime = new Date();
+    
+    // Calculate elapsed time in milliseconds
+    const elapsedMilliseconds = currentTime - startTime;
+    
+    // Convert elapsed time to minutes, seconds, and milliseconds
+    const minutes = Math.floor(elapsedMilliseconds / (1000 * 60));
+    // const seconds = Math.floor((elapsedMilliseconds % (1000 * 60)) / 1000);
+    const seconds =  Math.floor(elapsedMilliseconds/1000) - (minutes*60)
+    // const milliseconds = elapsedMilliseconds % 1000;
+    const milliseconds = elapsedMilliseconds -(seconds*1000) 
+    
+    // Display the formatted time
+    document.querySelector('#clock').textContent = `${minutes}:${seconds}:${milliseconds}`;
+    
+    requestAnimationFrame(updateClock);
+}
+
+// Initialize start time
+const startTime = new Date();
+
+// Start the clock
+updateClock();
+
+    //********************************************************
+    // <1> setTimeout   // ---> 
+    
+    const changeHeadingTimeout = setTimeout(changeHeading,2000,"Sameer");
+    // const changeHeadingTimeout = setTimeout(changeHeading,2000);
+    // --->  we also use it without parameter like this
+
+    document.getElementById('stop').addEventListener('click',(e)=>{
+        const currentTime = new Date();
+        if(Math.floor((currentTime - startTime)/1000)>=2 && document.querySelector('h1').textContent === "I am Learning Javascript"){
+            console.log("Function Already Stopped");
+        }
+        else if(Math.floor((currentTime - startTime)/1000)>=2){
+            console.log("Function Already Fired");
+        }
+        else{
+            //********************************************************
+            // <2> clear interval    // ---> used to clear interval
+            
+            console.log('Interval Cleared');
+            clearInterval(changeHeadingTimeout);
+        }
+    })
+</script>
+</html>
