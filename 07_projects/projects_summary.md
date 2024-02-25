@@ -359,15 +359,25 @@ function changeBackground() {
   console.log(`Background Color : ${randomColorVal}`);
 }
 document.getElementById("start").addEventListener("click", (e) => {
-  interval = setInterval(changeBackground, 1000);
+  if (!interval) {
+    interval = setInterval(changeBackground, 1000);
+  } else {
+    console.log(`Already Started !`);
+  }
 });
 
 document.getElementById("stop").addEventListener("click", (e) => {
-  clearInterval(interval);
-  console.log(
-    `Current Background Color : ${
-      document.querySelector("body").style.backgroundColor
-    }`
-  );
+  if (interval) {
+    clearInterval(interval);
+    console.log(
+      `Current Background Color : ${
+        document.querySelector("body").style.backgroundColor
+      }`
+    );
+    console.log(`Interval : ${interval}`);
+    interval = null;
+  } else {
+    console.log(`Already Stopped !`);
+  }
 });
 ```

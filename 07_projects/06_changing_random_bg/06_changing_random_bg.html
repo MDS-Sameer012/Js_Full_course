@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing Random Bg</title>
+</head>
+
+<body>
+    <h1>Click <button id="start">Start</button> to Randomly Change Background</h1>
+    <h1>Click <button id="stop">Stop</button> to Stop Background Color</h1>
+</body>
+<script>
+
+    let interval;
+    function random() {
+        return Math.floor(Math.random() * 255 + 1);
+    }
+
+    function changeBackground() {
+        const randomColorVal = `rgb(${random()},${random()},${random()})`;
+        document.querySelector('body').style.backgroundColor = randomColorVal;
+        console.log(`Background Color : ${randomColorVal}`);
+    }
+    document.getElementById('start').addEventListener('click', (e) => {
+        if(!interval){
+            interval = setInterval(changeBackground, 1000);
+        }
+        else{
+            console.log(`Already Started !`);
+        }
+
+    });
+
+    document.getElementById('stop').addEventListener('click', (e) => {
+        if(interval){
+            clearInterval(interval);
+            console.log(`Current Background Color : ${document.querySelector('body').style.backgroundColor}`);
+            console.log(`Interval : ${interval}`);
+            interval = null;
+        }
+        else{
+            console.log(`Already Stopped !`);
+        }
+    })
+</script>
+
+</html>
