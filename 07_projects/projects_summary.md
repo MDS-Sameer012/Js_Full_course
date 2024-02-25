@@ -385,49 +385,161 @@ document.getElementById("stop").addEventListener("click", (e) => {
 ## Project 7 Getting Value of Key Pressed
 
 ```javascript
-    const div = document.getElementById('keyPressed');
+const div = document.getElementById("keyPressed");
 
-    //    if you don't want to replace row content and want history of key pressed then comment line 52 to 68 and line 88
-    window.addEventListener('keydown', (e) => {
-        if (window.getComputedStyle(document.querySelector('table')).display === 'none') {
-            document.querySelector('table').style.display = 'table';
+//    if you don't want to replace row content and want history of key pressed then comment line 52 to 68 and line 88
+window.addEventListener("keydown", (e) => {
+  if (
+    window.getComputedStyle(document.querySelector("table")).display === "none"
+  ) {
+    document.querySelector("table").style.display = "table";
+  }
+  if (document.querySelector("tbody")) {
+    const trbody = document.createElement("tr");
+    const key = document.createElement("td");
+    const keyCode = document.createElement("td");
+    const code = document.createElement("td");
+
+    key.appendChild(document.createTextNode(e.key));
+    keyCode.appendChild(document.createTextNode(e.keyCode));
+    code.appendChild(document.createTextNode(e.code));
+
+    trbody.appendChild(key);
+    trbody.appendChild(keyCode);
+    trbody.appendChild(code);
+
+    document
+      .querySelector("tbody")
+      .replaceChild(trbody, document.querySelector("tbody").firstChild);
+  } else {
+    const table = document.querySelector("table");
+    const tbody = document.createElement("tbody");
+    const trbody = document.createElement("tr");
+    const key = document.createElement("td");
+    const keyCode = document.createElement("td");
+    const code = document.createElement("td");
+
+    key.appendChild(document.createTextNode(e.key));
+    keyCode.appendChild(document.createTextNode(e.keyCode));
+    code.appendChild(document.createTextNode(e.code));
+
+    trbody.appendChild(key);
+    trbody.appendChild(keyCode);
+    trbody.appendChild(code);
+
+    tbody.appendChild(trbody);
+
+    table.appendChild(tbody);
+    div.appendChild(table);
+  }
+});
+```
+
+## Project 8 : Getting GitHub User Data and Creating Card
+
+```javascript
+function createCard(userName_, name_, location_, profileUrl, followers_) {
+  const card = document.createElement("div");
+  card.setAttribute("class", "card");
+
+  const profilePicture = document.createElement("div");
+  profilePicture.setAttribute("class", "profile-picture");
+
+  const image = document.createElement("img");
+  image.setAttribute("src", profileUrl);
+  image.setAttribute(
+    "alt",
+    `${name_ === null ? "Not Available" : userName_}'s Profile Picture`
+  );
+
+  profilePicture.appendChild(image);
+
+  card.appendChild(profilePicture);
+
+  const info = document.createElement("div");
+  info.setAttribute("class", "info");
+
+  const name = document.createElement("h2");
+  name.appendChild(
+    document.createTextNode(
+      `Name : ${name_ === null ? "Not Available" : name_}`
+    )
+  );
+
+  const location = document.createElement("p");
+  location.appendChild(
+    document.createTextNode(
+      `${location_ === null ? "Not Available" : location_}`
+    )
+  );
+
+  const userName = document.createElement("h4");
+  userName.appendChild(document.createTextNode(`User Name : ${userName_}`));
+
+  const followers = document.createElement("h3");
+  followers.appendChild(
+    document.createTextNode(`Followers : ${followers_.toLocaleString("en-IN")}`)
+  );
+
+  info.appendChild(name);
+  info.appendChild(location);
+  info.appendChild(userName);
+  info.appendChild(followers);
+
+  card.appendChild(info);
+  console.log(card);
+
+  document.querySelector("#cards").appendChild(card);
+}
+
+function updateBorderColor() {
+  const cards = document.getElementById("cards");
+  cards.style.borderColor = cards.childElementCount ? "white" : "#212121";
+}
+
+function clearError() {
+  document.getElementById("error").textContent = "";
+}
+function getData() {
+  clearError();
+  if (!document.getElementById("userName").value) {
+    document.getElementById("error").textContent = "Please Enter User Name *";
+  } else {
+    const xhr = new XMLHttpRequest();
+
+    const userName = document.getElementById("userName").value;
+    const requestUrl = `https://api.github.com/users/${userName}`;
+
+    xhr.onreadystatechange = () => {
+      console.log(`ready State : ${xhr.readyState}`);
+
+      if (xhr.readyState === 4) {
+        const data = JSON.parse(xhr.responseText);
+
+        if (data.hasOwnProperty("message")) {
+          document.getElementById("error").textContent = "No User Found *";
+        } else {
+          const name = data.name;
+          const profilePicture = data.avatar_url;
+          const location = data.location;
+          const followers = data.followers;
+
+          createCard(userName, name, location, profilePicture, followers);
+
+          updateBorderColor();
         }
-        if (document.querySelector('tbody')) {
-            const trbody = document.createElement('tr');
-            const key = document.createElement('td');
-            const keyCode = document.createElement('td');
-            const code = document.createElement('td');
+      }
+    };
 
-            key.appendChild(document.createTextNode(e.key));
-            keyCode.appendChild(document.createTextNode(e.keyCode));
-            code.appendChild(document.createTextNode(e.code));
+    xhr.open("GET", requestUrl);
 
-            trbody.appendChild(key);
-            trbody.appendChild(keyCode);
-            trbody.appendChild(code);
+    xhr.send();
+  }
+}
 
-            document.querySelector('tbody').replaceChild(trbody, document.querySelector('tbody').firstChild)
-        }
-        else {
-            const table = document.querySelector('table');
-            const tbody = document.createElement('tbody');
-            const trbody = document.createElement('tr');
-            const key = document.createElement('td');
-            const keyCode = document.createElement('td');
-            const code = document.createElement('td');
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault();
 
-            key.appendChild(document.createTextNode(e.key));
-            keyCode.appendChild(document.createTextNode(e.keyCode));
-            code.appendChild(document.createTextNode(e.code));
-
-            trbody.appendChild(key);
-            trbody.appendChild(keyCode);
-            trbody.appendChild(code);
-
-            tbody.appendChild(trbody);
-
-            table.appendChild(tbody);
-            div.appendChild(table);
-        }
-    })
+  getData();
+});
 ```
