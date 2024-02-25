@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Key Pressed Value</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: white;
+            font-size: 20px;
+        }
+
+        table {
+            margin: 4px;
+            display: none;
+        }
+
+        table,
+        td,
+        th,
+        tr {
+            border: 2px solid #fff;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Press Any Key</h1>
+    <div id="keyPressed">
+        <table>
+            <thead>
+                <tr>
+                    <th>Key Pressed</th>
+                    <th>Key Code</th>
+                    <th>Code</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+<script>
+    const div = document.getElementById('keyPressed');
+
+    //    if you don't want to replace row content and want history of key pressed then comment line 52 to 68 and line 88 
+    window.addEventListener('keydown', (e) => {
+        if (window.getComputedStyle(document.querySelector('table')).display === 'none') {
+            document.querySelector('table').style.display = 'table';
+        }
+        if (document.querySelector('tbody')) {
+            const trbody = document.createElement('tr');
+            const key = document.createElement('td');
+            const keyCode = document.createElement('td');
+            const code = document.createElement('td');
+
+            key.appendChild(document.createTextNode(e.key));
+            keyCode.appendChild(document.createTextNode(e.keyCode));
+            code.appendChild(document.createTextNode(e.code));
+
+            trbody.appendChild(key);
+            trbody.appendChild(keyCode);
+            trbody.appendChild(code);
+
+            document.querySelector('tbody').replaceChild(trbody, document.querySelector('tbody').firstChild)
+        }
+        else {
+            const table = document.querySelector('table');
+            const tbody = document.createElement('tbody');
+            const trbody = document.createElement('tr');
+            const key = document.createElement('td');
+            const keyCode = document.createElement('td');
+            const code = document.createElement('td');
+
+            key.appendChild(document.createTextNode(e.key));
+            keyCode.appendChild(document.createTextNode(e.keyCode));
+            code.appendChild(document.createTextNode(e.code));
+
+            trbody.appendChild(key);
+            trbody.appendChild(keyCode);
+            trbody.appendChild(code);
+
+            tbody.appendChild(trbody);
+
+            table.appendChild(tbody);
+            div.appendChild(table);
+        }
+    })
+
+    /*
+ window.addEventListener('keydown', (e) => {
+         
+         div.innerHTML = `
+     <table>
+         <thead>
+             <tr>
+                 <th>Key Pressed</th>
+                 <th>Key Code</th>
+                 <th>Code</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>${e.key === " " ? "Space" : e.key}</td>
+                 <td>${e.keyCode}</td>
+                 <td>${e.code}</td>
+             </tr>
+         </tbody>
+         </table>
+     `;
+     });
+ */
+
+</script>
+
+</html>

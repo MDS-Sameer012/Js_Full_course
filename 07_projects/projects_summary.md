@@ -381,3 +381,53 @@ document.getElementById("stop").addEventListener("click", (e) => {
   }
 });
 ```
+
+## Project 7 Getting Value of Key Pressed
+
+```javascript
+    const div = document.getElementById('keyPressed');
+
+    //    if you don't want to replace row content and want history of key pressed then comment line 52 to 68 and line 88
+    window.addEventListener('keydown', (e) => {
+        if (window.getComputedStyle(document.querySelector('table')).display === 'none') {
+            document.querySelector('table').style.display = 'table';
+        }
+        if (document.querySelector('tbody')) {
+            const trbody = document.createElement('tr');
+            const key = document.createElement('td');
+            const keyCode = document.createElement('td');
+            const code = document.createElement('td');
+
+            key.appendChild(document.createTextNode(e.key));
+            keyCode.appendChild(document.createTextNode(e.keyCode));
+            code.appendChild(document.createTextNode(e.code));
+
+            trbody.appendChild(key);
+            trbody.appendChild(keyCode);
+            trbody.appendChild(code);
+
+            document.querySelector('tbody').replaceChild(trbody, document.querySelector('tbody').firstChild)
+        }
+        else {
+            const table = document.querySelector('table');
+            const tbody = document.createElement('tbody');
+            const trbody = document.createElement('tr');
+            const key = document.createElement('td');
+            const keyCode = document.createElement('td');
+            const code = document.createElement('td');
+
+            key.appendChild(document.createTextNode(e.key));
+            keyCode.appendChild(document.createTextNode(e.keyCode));
+            code.appendChild(document.createTextNode(e.code));
+
+            trbody.appendChild(key);
+            trbody.appendChild(keyCode);
+            trbody.appendChild(code);
+
+            tbody.appendChild(trbody);
+
+            table.appendChild(tbody);
+            div.appendChild(table);
+        }
+    })
+```
