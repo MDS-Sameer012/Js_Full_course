@@ -497,13 +497,19 @@ function updateBorderColor() {
   cards.style.borderColor = cards.childElementCount ? "white" : "#212121";
 }
 
-function clearError() {
-  document.getElementById("error").textContent = "";
+function generateMessage(message, color) {
+  document.getElementById("message").style.color = color;
+  document.getElementById("message").textContent = message;
 }
+
+function clearMessage() {
+  document.getElementById("message").textContent = "";
+}
+
 function getData() {
-  clearError();
+  clearMessage();
   if (!document.getElementById("userName").value) {
-    document.getElementById("error").textContent = "Please Enter User Name *";
+    generateMessage("Please Enter User Name *", "red");
   } else {
     const xhr = new XMLHttpRequest();
 
@@ -517,7 +523,7 @@ function getData() {
         const data = JSON.parse(xhr.responseText);
 
         if (data.hasOwnProperty("message")) {
-          document.getElementById("error").textContent = "No User Found *";
+          generateMessage("No User Found *", "red");
         } else {
           const name = data.name;
           const profilePicture = data.avatar_url;
@@ -527,6 +533,7 @@ function getData() {
           createCard(userName, name, location, profilePicture, followers);
 
           updateBorderColor();
+          generateMessage("User Card Created Successful !", "lightgreen");
         }
       }
     };
@@ -536,7 +543,6 @@ function getData() {
     xhr.send();
   }
 }
-
 document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
 
