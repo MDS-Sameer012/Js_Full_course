@@ -41,3 +41,24 @@ console.log(Object.getPrototypeOf(sameer)); // --> Output : { sayHello: [Functio
 // <2> Object.getPrototypeOf(obj)   // ---> it will return the prototype of obj, which is the object associated with the constructor function's prototype from which obj is created. We can say obj is an instance of that constructor function, and obj inherits properties and methods from the prototype.
 
 
+//********************************************************
+
+function multipleBy5(num){
+
+    this.result=num*5 ; // --->  uncomment this line and comment below line to make this function a constructor function still it is not a constructor function but even after doing the defined process it never become typicall constructor function because it return value other than object
+    // return num*5
+}
+
+multipleBy5.power = 2; // --->  it is specific to function and doesn't shared among the instances of that function
+
+multipleBy5.prototype.sameer = 'sameer'; // --->  it is shared among the instances of function and it is property of prototype of function
+
+// console.log(multipleBy5(5)); // --> Output : 25
+// console.log(multipleBy5.power);  // --> Output : 2
+// console.log(multipleBy5.prototype);  // --> Output : sameer
+
+const example =new multipleBy5(3);
+// console.log(example.result); // --> Output : 15
+// console.log(example.power);  // --> Output : undefined
+// console.log(example.prototype);  // --> Output : undefined
+// console.log(example.sameer);  // --> Output : sameer
