@@ -33,9 +33,9 @@ const sohail = new Person('sohail');
 //********************************************************
 /* <> constructorFunction.prototype   // ---> it is used to get the properties of the constructor function */
 
-console.log(sameer.prototype); // --> Output : undefined [as sameer is a instance of Person not a constructor function like Person]
-console.log(Person.prototype);  // --> Output : { sayHello: [Function (anonymous)] }
-console.log(Object.getPrototypeOf(sameer)); // --> Output : { sayHello: [Function (anonymous)] }
+// console.log(sameer.prototype); // --> Output : undefined [as sameer is a instance of Person not a constructor function like Person]
+// console.log(Person.prototype);  // --> Output : { sayHello: [Function (anonymous)] }
+// console.log(Object.getPrototypeOf(sameer)); // --> Output : { sayHello: [Function (anonymous)] }
 
 //********************************************************
 // <2> Object.getPrototypeOf(obj)   // ---> it will return the prototype of obj, which is the object associated with the constructor function's prototype from which obj is created. We can say obj is an instance of that constructor function, and obj inherits properties and methods from the prototype.
@@ -62,3 +62,59 @@ const example =new multipleBy5(3);
 // console.log(example.power);  // --> Output : undefined
 // console.log(example.prototype);  // --> Output : undefined
 // console.log(example.sameer);  // --> Output : sameer
+
+//********************************************************
+// <3> Setting prototype property of built in datatypes like object , array etc    // ---> any datatype in js at the last it is object
+
+const myArray = [1, 3, 4, 3,6,3,3,3]; // --->  now in this we use builtin properties like forEach , length etc. but we also define our property for all arrays
+
+// myArray.length = 45 // --->  it will set array length to 45 and push <41 empty items> 
+// console.log(myArray.length); // --> Output : 45
+// console.log(myArray); // --> Output : [ 1, 3, 4, 3, <41 empty items> ]
+
+// like this :
+// if we want to access property like Array.length not like arr.length() so we define like below
+Object.defineProperty(Array.prototype, 'numberOfDivisibleOfThree', {
+    get: function () {
+        const divisibleOfThree = [];
+        this.forEach((num) => {
+            if (num % 3 === 0) {
+                divisibleOfThree.push(num);
+            }
+        })
+        return divisibleOfThree.length;
+    }
+})
+
+// console.log(myArray.numberOfDivisibleOfThree);
+
+//********************************************************
+// <4> single level inheritance of objects using [__proto__]   // ---> 
+
+const KeypadPhone = {
+    brand: 'Samsung',
+    makeCall: true,
+    sendMessage: true,
+    listenMusic : true
+}
+
+const SmartPhone = {
+    camera: true,
+    watchVideo: true,
+    internetConnectivity: true,
+    fastCharging : true
+}
+SmartPhone.__proto__ = KeypadPhone;
+// now we can access property of SmartPhone as well as KeypadPhone
+
+// console.log(SmartPhone.fastCharging); // --> Output : true [ own property]
+// console.log(SmartPhone.listenMusic); // --> Output : true [ KeypadPhone Property]
+
+const GamingPhone = {
+    heavyGaming : true
+}
+GamingPhone.__proto__ = SmartPhone;
+
+// console.log(GamingPhone.heavyGaming);  // --> Output : true [ Own property]
+// console.log(GamingPhone.fastCharging);  // --> Output : true [ SmartPhone property]
+// console.log(GamingPhone.makeCall);  // --> Output : true [ keypadPhone property] as Smartphone inherit keypadPhone
